@@ -25,8 +25,8 @@ section {
 }
 
 .calculator {
-  height: 500px;
-  width: 400px;
+  height: 400px;
+  width: 450px;
 
   box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.5);
   padding: 1rem;
