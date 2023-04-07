@@ -25,7 +25,7 @@ section {
 }
 
 .calculator {
-  height: 400px;
+  height: fit-content;
   width: 450px;
 
   box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.5);
@@ -56,27 +56,19 @@ section {
   box-shadow: inset 2px 3px 5px 0px rgba(0, 0, 0, 0.7);
 }
 
-.box {
+.solar-panel > .box {
   flex: 1;
 }
 
-.line {
+.solar-panel > .line {
   border-left: 1px solid black;
-}
-
-.brand-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-right: 0.5rem;
-  text-shadow: 1px 1px 1px rgba(187, 198, 206, 0.5);
 }
 
 .brand-text > p {
   margin: 0;
   font-size: 1.5rem;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  text-shadow: 1px 1px 1px rgba(187, 198, 206, 0.5);
 }
 
 .display-container {
@@ -86,6 +78,7 @@ section {
   font-size: 2rem;
   width: 95%;
   padding: 5px 10px;
+  margin-bottom: 1rem;
   border-radius: 10px;
   background-color: #9a9383;
   color: #151516;
@@ -96,6 +89,60 @@ section {
 .result-area {
   text-align: end;
   line-height: 1;
+}
+
+.buttons-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: 100%;
+  grid-gap: 0.5rem;
+  padding: 1rem;
+  background: #212121;
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  width: 100%;
+}
+
+.buttons-container > button {
+  margin-bottom: 0;
+  font-size: 1.325rem;
+  padding: 1rem 0;
+  font-weight: 800;
+  background: #616161;
+  border: 0px solid transparent;
+  outline: none;
+  text-decoration: none;
+  box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.5);
+  color: #dfdfdf;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+button.digits:hover,
+button.decimal:hover {
+  background-color: #bdbdbd;
+  color: #5e5e5e;
+}
+
+button.allclear:hover,
+button.clear:hover {
+  background-color: #4a0000;
+}
+
+button.operators:hover {
+  background-color: darkorange;
+}
+
+button:active {
+  transform: translateY(0.2rem);
+}
+
+button.equals {
+  grid-column: 3 / 5;
+}
+
+button.equals:hover {
+  background-color: limegreen;
 }
 
 footer {
