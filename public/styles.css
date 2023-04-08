@@ -83,7 +83,9 @@ section {
 
 .operation-area,
 .result-area {
-  height: 1em;
+  flex : 1;
+  min-height: 1em;
+  font-size: 1.5em;
   text-align: end;
   line-height: 1;
 }
