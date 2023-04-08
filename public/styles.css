@@ -61,6 +61,7 @@ section {
 
 .brand-text > p {
   margin: 0;
+  text-align: center;
   font-size: 1.5rem;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   text-shadow: 1px 1px 1px rgba(187, 198, 206, 0.5);
@@ -82,6 +83,7 @@ section {
 
 .operation-area,
 .result-area {
+  height: 1em;
   text-align: end;
   line-height: 1;
 }
