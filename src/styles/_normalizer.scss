@@ -28,6 +28,8 @@ html {
 
 /* Set core body defaults */
 body {
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
     text-rendering: optimizeSpeed;
     line-height: 1.15;
