@@ -1,10 +1,38 @@
 @use "./normalizer";
 @use "./variables";
 
-#app {
-    flex : 1;
-
+:root {
+    font-size: var(--base-font-size);
+    font-family: "Inter", sans-serif;
+    color: #fff;
     background-color: #fcb31b;
+}
+@supports (font-variation-settings: normal) {
+    :root {
+        font-family: "Inter var", sans-serif;
+    }
+}
 
+/* Layout */
+#app {
+    flex-grow: 1;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    justify-items: center;
+    align-items: center;
+}
 
+#calculator {
+    background-color: #212121;
+    padding: var(--spacing-sm);
+}
+
+footer {
+    padding-bottom: var(--spacing-xs);
+
+    img {
+        @media (max-width: 1400px) {
+            width: 40px;
+        }
+    }
 }
