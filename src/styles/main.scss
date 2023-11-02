@@ -1,11 +1,16 @@
 @use "./normalizer";
 @use "./variables";
+@use "./head";
 
 :root {
     font-size: var(--base-font-size);
     font-family: "Inter", sans-serif;
     color: #fff;
     background-color: #fcb31b;
+
+    #app {
+        flex-grow: 1;
+    }
 }
 @supports (font-variation-settings: normal) {
     :root {
@@ -15,24 +20,31 @@
 
 /* Layout */
 #app {
-    flex-grow: 1;
     display: grid;
     grid-template-rows: 1fr auto;
-    justify-items: center;
     align-items: center;
 }
 
 #calculator {
     background-color: #212121;
+    box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.5);
     padding: var(--spacing-sm);
+    margin: 0 auto;
+    width: 80%;
+    width: clamp(350px, 80%, 450px);
+    border-radius: 1rem;
 }
 
 footer {
-    padding-bottom: var(--spacing-xs);
+    display: flex;
+    justify-content: center;
 
-    img {
-        @media (max-width: 1400px) {
-            width: 40px;
+    a {
+        img {
+            padding-bottom: var(--spacing-xxs);
+            @media (max-width: 1400px) {
+                width: 40px;
+            }
         }
     }
 }
