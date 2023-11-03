@@ -1,0 +1,22 @@
+@font-face {
+    font-family: "DS-DIG";
+    src: url("../../public/font/DS-DIGII.TTF");
+}
+
+.calculator__display {
+    margin: 0 auto;
+    margin-top: var(--spacing-md);
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #9a9383;
+    color: #151516;
+    box-shadow: inset 2px 3px 5px 0px rgba(0, 0, 0, 0.7);
+
+    p[class="calculator__operation"],
+    p[class="calculator__result"] {
+        line-height: 1;
+        font-family: DS-DIG;
+        font-size: var(--font-size-8);
+        text-align: end;
+    }
+}

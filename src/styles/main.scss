@@ -1,6 +1,7 @@
 @use "./normalizer";
 @use "./variables";
 @use "./head";
+@use "./display";
 
 :root {
     font-size: var(--base-font-size);
