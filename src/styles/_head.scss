@@ -1,9 +1,9 @@
-.head {
+.calculator__head {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    &__solar-panel {
+    .calculator__solar-panel {
         display: flex;
         height: 40px;
         width: 150px;
@@ -21,7 +21,7 @@
         }
     }
 
-    &__brand {
+    .calculator__brand {
         color: #bbc6ce;
         text-align: center;
         font-size: var(--font-size-2);
