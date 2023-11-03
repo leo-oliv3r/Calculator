@@ -2,6 +2,7 @@
 @use "./variables";
 @use "./head";
 @use "./display";
+@use "./buttons";
 
 :root {
     font-size: var(--base-font-size);
@@ -24,6 +25,7 @@
     display: grid;
     grid-template-rows: 1fr auto;
     align-items: center;
+    padding-top: var(--spacing-xxs);
 }
 
 #calculator {
