@@ -14,6 +14,7 @@
 
     p[class="calculator__operation"],
     p[class="calculator__result"] {
+        height: 2ch;
         line-height: 1;
         font-family: DS-DIG;
         font-size: var(--font-size-8);
