@@ -1,9 +1,7 @@
-export type Operator = "+" | "-" | "*" | "/" | "%" | null;
-
 export class Calculator {
-    private firstOperand = "";
-    private secondOperand = "";
-    private operator: Operator = null;
+    private firstOperand = 0;
+    private secondOperand = 0;
+    private operator: string = "";
 
     private add(a: number, b: number) {
         return a + b;
@@ -28,6 +26,8 @@ export class Calculator {
         return a % b;
     }
 
+    private round = (number: number) => Math.round(number * 1000) / 1000;
+
     getOperator() {
         return this.operator;
     }
@@ -40,32 +40,40 @@ export class Calculator {
         return this.secondOperand;
     }
 
-    setFirstOperand(operand: string) {
-        this.firstOperand = operand;
+    setFirstOperand(operandTxt: string) {
+        this.firstOperand = Number(operandTxt);
     }
 
-    setSecondOperand(operand: string) {
-        this.secondOperand = operand;
+    setSecondOperand(operandTxt: string) {
+        this.secondOperand = Number(operandTxt);
     }
 
-    setOperator(newOperator: Operator) {
-        this.operator = newOperator;
+    setOperator(operatorTxt: string) {
+        if (operatorTxt === "&divide;") {
+            operatorTxt = "/";
+        }
+
+        if (operatorTxt === "&times;") {
+            operatorTxt = "*";
+        }
+
+        this.operator = operatorTxt;
     }
 
-    operate(): number {
+    calculate(): number {
         const n1 = Number(this.firstOperand);
         const n2 = Number(this.secondOperand);
         switch (this.operator) {
             case "+":
-                return this.add(n1, n2);
+                return this.round(this.add(n1, n2));
             case "-":
-                return this.substract(n1, n2);
+                return this.round(this.substract(n1, n2));
             case "*":
-                return this.multiply(n1, n2);
+                return this.round(this.multiply(n1, n2));
             case "/":
-                return this.divide(n1, n2);
+                return this.round(this.divide(n1, n2));
             case "%":
-                return this.modulus(n1, n2);
+                return this.round(this.modulus(n1, n2));
             default:
                 return 0;
         }

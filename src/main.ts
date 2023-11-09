@@ -1,4 +1,4 @@
-import { Calculator, Operator } from "./calculator";
+import { Calculator } from "./calculator";
 
 const lastOperation = document.querySelector(".calculator__last-operation") as HTMLParagraphElement;
 const currentOperation = document.querySelector(".calculator__current-operation") as HTMLParagraphElement;
@@ -10,37 +10,31 @@ const decimalPointBtn = document.querySelector(".decimal-point") as HTMLButtonEl
 const clearBtn = document.querySelector(".clear-one") as HTMLButtonElement;
 const allClearBtn = document.querySelector(".allclear") as HTMLButtonElement;
 
-let shouldClearScreen = false;
-
 const calculator = new Calculator();
 
-function clearScreen() {
-    currentOperation.textContent = "";
-    shouldClearScreen = false;
+function resetCurrentOperationDisplay() {
+    currentOperation.textContent = "0";
 }
 
 function appendNumberToDisplay(numberText: string) {
-    if (currentOperation.textContent === "0" || shouldClearScreen) {
-        clearScreen();
+    if (currentOperation.textContent === "0") {
+        currentOperation.textContent = "";
+    }
+
+    if (currentOperation.textContent!.length > 13) {
+        return;
     }
 
     currentOperation.textContent += numberText;
 }
 
-function fullClear() {
-    lastOperation.textContent = "";
-    currentOperation.textContent = "0";
-    calculator.setFirstOperand("");
-    calculator.setSecondOperand("");
-    calculator.setOperator(null);
-}
-
 function addDecimalPoint() {
-    if (shouldClearScreen) clearScreen();
     if (currentOperation.textContent === "") {
         currentOperation.textContent = "0";
     }
-    if (currentOperation.textContent?.includes(".")) return;
+
+    // Just one decimal point allowed
+    if (currentOperation.textContent!.includes(".")) return;
 
     currentOperation.textContent += ".";
 }
@@ -49,67 +43,54 @@ function clearNumber() {
     currentOperation.textContent = currentOperation.textContent!.slice(0, -1);
 }
 
-function evaluate() {
-    if (calculator.getOperator === null || shouldClearScreen || calculator.getFirstOperand() === "") {
-        return;
-    }
-
-    const round = (number: number) => Math.round(number * 1000) / 1000;
-
-    calculator.setSecondOperand(currentOperation.textContent!);
-
-    let operationResult: number;
-
-    try {
-        operationResult = calculator.operate();
-        currentOperation.textContent = `${round(operationResult)}`;
-    } catch (error) {
-        if (error instanceof Error) {
-            alert(error.message);
-            return;
-        }
-    }
-
-    lastOperation.textContent = `${calculator.getFirstOperand()} ${calculator.getOperator()} ${calculator.getSecondOperand()} =`;
-
-    calculator.setOperator(null);
+function fullClear() {
+    lastOperation.textContent = "";
+    currentOperation.textContent = "0";
+    calculator.setFirstOperand("");
+    calculator.setSecondOperand("");
+    calculator.setOperator("");
 }
 
-function setOperation(newOperator: Operator) {
-    if (calculator.getOperator() !== null) {
-        evaluate();
-    }
+// let isFirstOperation = true;
+// function operate(operator: string) {
+//     if (currentOperation.textContent === "") resetCurrentOperationDisplay();
 
-    calculator.setFirstOperand(currentOperation.textContent!);
+//     if (isFirstOperation) {
+//         calculator.setOperator(operator);
+//         calculator.setFirstOperand(currentOperation.textContent!);
+//         lastOperation.textContent = `${calculator.getFirstOperand()} ${operator}`;
+//         resetCurrentOperationDisplay();
+//         isFirstOperation = false;
+//         return;
+//     }
+// }
 
-    calculator.setOperator(newOperator);
+// function evaluate() {
+//     if (calculator.getOperator === null) {
+//         return;
+//     }
 
-    lastOperation.textContent = `${calculator.getFirstOperand()} ${calculator.getOperator()}`;
+//     calculator.setSecondOperand(currentOperation.textContent!);
 
-    shouldClearScreen = true;
-}
+//     let operationResult: number;
 
-function handleKeyboardInput(e: KeyboardEvent) {
-    if (Number(e.key) >= 0 && Number(e.key) <= 9) appendNumberToDisplay(e.key);
-    if (e.key === ".") addDecimalPoint();
-    if (e.key === "=" || e.key === "Enter") evaluate();
-    if (e.key === "Backspace") clearNumber();
-    if (e.key === "Escape") fullClear();
-    if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") setOperation(e.key);
-}
+//     try {
+//         operationResult = calculator.calculate();
+//         currentOperation.textContent = `${round(operationResult)}`;
+//     } catch (error) {
+//         if (error instanceof Error) {
+//             alert(error.message);
+//             return;
+//         }
+//     }
 
-digitsBtns.forEach((element) => {
-    const btn = element as HTMLButtonElement;
-    btn.addEventListener("click", () => appendNumberToDisplay(btn.textContent!));
-});
+//     lastOperation.textContent = `${calculator.getFirstOperand()} ${calculator.getOperator()} ${calculator.getSecondOperand()} =`;
 
-operatorsBtns.forEach((element) => {
-    const btn = element as HTMLButtonElement;
-    btn.addEventListener("click", () => setOperation(btn.textContent as Operator));
-});
+//     calculator.setOperator(null);
+// }
 
-window.addEventListener("keydown", handleKeyboardInput);
-allClearBtn.addEventListener("click", fullClear);
 clearBtn.addEventListener("click", clearNumber);
-equalsBtn.addEventListener("click", evaluate);
+allClearBtn.addEventListener("click", fullClear);
 decimalPointBtn.addEventListener("click", addDecimalPoint);
+
+
