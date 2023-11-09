@@ -1,4 +1,4 @@
-type Operator = "+" | "-" | "*" | "/" | "%" | null;
+export type Operator = "+" | "-" | "*" | "/" | "%" | null;
 
 export class Calculator {
     private firstOperand = "";
@@ -28,6 +28,18 @@ export class Calculator {
         return a % b;
     }
 
+    getOperator() {
+        return this.operator;
+    }
+
+    getFirstOperand() {
+        return this.firstOperand;
+    }
+
+    getSecondOperand() {
+        return this.secondOperand;
+    }
+
     setFirstOperand(operand: string) {
         this.firstOperand = operand;
     }
@@ -55,7 +67,7 @@ export class Calculator {
             case "%":
                 return this.modulus(n1, n2);
             default:
-                throw new Error("Something went wrong...");
+                return 0;
         }
     }
 }
