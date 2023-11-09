@@ -27,7 +27,8 @@
         color: #5e5e5e;
     }
 
-    .operators:hover {
+    .operators:hover,
+    .decimal-point:hover {
         background-color: #ff8c00;
     }
 
@@ -35,7 +36,7 @@
         background-color: #ff5555;
     }
 
-    #equals {
+    .equals {
         grid-column: 3/ 5;
 
         &:hover {

@@ -1,23 +1,35 @@
-type Operator = "+" | "-" | "*" | "/" | "%";
+type Operator = "+" | "-" | "*" | "/" | "%" | null;
 
 export class Calculator {
-    private firstOperand: number;
-    private secondOperand: number;
-    private result: number;
-    private currentOperator: Operator;
+    private firstOperand = 0;
 
-    constructor() {
-        this.firstOperand = 0;
-        this.secondOperand = 0;
-        this.result = 0;
-        this.currentOperator = "+";
+    private secondOperand = 0;
+
+    private currentOperation: Operator = null;
+
+    private sToInt(s: string) {
+        return Number(s);
     }
 
-    setFirstOperand(value: string) {
-        this.firstOperand = Number(value);
-    }
+    operate(num1: number, num2: number, operator: Operator): number {
 
-    setSecondOperand(value: string) {
-        this.secondOperand = Number(value);
+        
+
+
+
+        switch (operator) {
+            case "+":
+                return num1 + num2;
+            case "-":
+                return num1 - num2;
+            case "*":
+                return num1 * num2;
+            case "/":
+                return num1 / num2;
+            case "%":
+                return num1 % num2;
+            default:
+                throw new Error("Invalid operator");
+        }
     }
 }

@@ -12,8 +12,8 @@
     color: #151516;
     box-shadow: inset 2px 3px 5px 0px rgba(0, 0, 0, 0.7);
 
-    p[class="calculator__operation"],
-    p[class="calculator__result"] {
+    p[class="calculator__last-operation"],
+    p[class="calculator__current-operation"] {
         height: 2ch;
         line-height: 1;
         font-family: DS-DIG;
