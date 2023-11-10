@@ -1,7 +1,9 @@
 import { Calculator } from "./calculator";
 
 const lastOperation = document.querySelector(".calculator__last-operation") as HTMLParagraphElement;
-const currentOperation = document.querySelector(".calculator__current-operation") as HTMLParagraphElement;
+const currentValue = document.querySelector(
+    ".calculator__current-operation"
+) as HTMLParagraphElement;
 
 const digitsBtns = document.querySelectorAll(".digits");
 const operatorsBtns = document.querySelectorAll(".operators");
@@ -12,85 +14,103 @@ const allClearBtn = document.querySelector(".allclear") as HTMLButtonElement;
 
 const calculator = new Calculator();
 
-function resetCurrentOperationDisplay() {
-    currentOperation.textContent = "0";
+let shouldClearScreen = false;
+
+function clearCurrentOperation() {
+    currentValue.textContent = "0";
+    shouldClearScreen = false;
 }
 
 function appendNumberToDisplay(numberText: string) {
-    if (currentOperation.textContent === "0") {
-        currentOperation.textContent = "";
+    if (currentValue.textContent === "0" || shouldClearScreen) {
+        currentValue.textContent = "";
     }
 
-    if (currentOperation.textContent!.length > 13) {
+    if (currentValue.textContent!.length > 13) {
         return;
     }
 
-    currentOperation.textContent += numberText;
+    currentValue.textContent += numberText;
 }
 
 function addDecimalPoint() {
-    if (currentOperation.textContent === "") {
-        currentOperation.textContent = "0";
+    if (shouldClearScreen) clearCurrentOperation();
+
+    if (currentValue.textContent === "") {
+        currentValue.textContent = "0";
     }
 
     // Just one decimal point allowed
-    if (currentOperation.textContent!.includes(".")) return;
+    if (currentValue.textContent!.includes(".")) return;
 
-    currentOperation.textContent += ".";
+    currentValue.textContent += ".";
 }
 
 function clearNumber() {
-    currentOperation.textContent = currentOperation.textContent!.slice(0, -1);
+    currentValue.textContent = currentValue.textContent!.slice(0, -1);
 }
 
-function fullClear() {
+function allClear() {
     lastOperation.textContent = "";
-    currentOperation.textContent = "0";
+    currentValue.textContent = "0";
     calculator.setFirstOperand("");
     calculator.setSecondOperand("");
     calculator.setOperator("");
 }
 
-// let isFirstOperation = true;
-// function operate(operator: string) {
-//     if (currentOperation.textContent === "") resetCurrentOperationDisplay();
+function setOperation(operatorTxt: string) {
+    if (calculator.getOperator() !== "") evaluate();
 
-//     if (isFirstOperation) {
-//         calculator.setOperator(operator);
-//         calculator.setFirstOperand(currentOperation.textContent!);
-//         lastOperation.textContent = `${calculator.getFirstOperand()} ${operator}`;
-//         resetCurrentOperationDisplay();
-//         isFirstOperation = false;
-//         return;
-//     }
-// }
+    if (currentValue.textContent === "") {
+        currentValue.textContent = "0";
+    }
 
-// function evaluate() {
-//     if (calculator.getOperator === null) {
-//         return;
-//     }
+    calculator.setFirstOperand(currentValue.textContent!);
+    calculator.setOperator(operatorTxt);
+    lastOperation.textContent = `${calculator.getFirstOperand()} ${operatorTxt}`;
+    shouldClearScreen = true;
+}
 
-//     calculator.setSecondOperand(currentOperation.textContent!);
+function evaluate() {
+    if (calculator.getOperator() === "" || shouldClearScreen) {
+        return;
+    }
 
-//     let operationResult: number;
+    calculator.setSecondOperand(currentValue.textContent!);
 
-//     try {
-//         operationResult = calculator.calculate();
-//         currentOperation.textContent = `${round(operationResult)}`;
-//     } catch (error) {
-//         if (error instanceof Error) {
-//             alert(error.message);
-//             return;
-//         }
-//     }
+    try {
+        currentValue.textContent = `${calculator.calculate()}`;
+    } catch (error) {
+        if (error instanceof Error) alert(error.message);
+        return;
+    }
 
-//     lastOperation.textContent = `${calculator.getFirstOperand()} ${calculator.getOperator()} ${calculator.getSecondOperand()} =`;
+    lastOperation.textContent = `${calculator.getFirstOperand()} ${calculator.getSecondOperand()} ${calculator.getSecondOperand()} =`;
+    calculator.setOperator("");
+}
 
-//     calculator.setOperator(null);
-// }
+function handleKeyboardInput(keydown: KeyboardEvent) {
+    if (Number(keydown.key) >= 0 && Number(keydown.key) <= 9) appendNumberToDisplay(keydown.key);
+    if (keydown.key === ".") addDecimalPoint();
+    if (keydown.key === "=" || keydown.key === "Enter") evaluate();
+    if (keydown.key === "Backspace") clearNumber();
+    if (keydown.key === "Escape") allClear();
+    if (keydown.key === "+" || keydown.key === "-" || keydown.key === "*" || keydown.key === "/")
+        setOperation(keydown.key);
+}
 
+window.addEventListener("keydown", handleKeyboardInput);
 clearBtn.addEventListener("click", clearNumber);
-allClearBtn.addEventListener("click", fullClear);
+allClearBtn.addEventListener("click", allClear);
 decimalPointBtn.addEventListener("click", addDecimalPoint);
+equalsBtn.addEventListener("click", evaluate);
 
+digitsBtns.forEach((btn) => {
+    btn = btn as HTMLButtonElement;
+    btn.addEventListener("click", () => appendNumberToDisplay(btn.textContent!));
+});
 
+operatorsBtns.forEach((btn) => {
+    btn = btn as HTMLButtonElement;
+    btn.addEventListener("click", () => setOperation(btn.textContent!));
+});
