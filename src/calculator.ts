@@ -1,3 +1,9 @@
+export class DivideByZeroError extends Error {
+    constructor() {
+        super("It's not possible to divide by 0");
+    }
+}
+
 export class Calculator {
     private firstOperand = 0;
     private secondOperand = 0;
@@ -17,7 +23,7 @@ export class Calculator {
 
     private divide(a: number, b: number) {
         if (b === 0) {
-            throw new Error("Cannot divide by 0");
+            throw new DivideByZeroError();
         }
         return a / b;
     }
@@ -49,11 +55,11 @@ export class Calculator {
     }
 
     setOperator(operatorTxt: string) {
-        if (operatorTxt === "&divide;") {
+        if (operatorTxt === "÷") {
             operatorTxt = "/";
         }
 
-        if (operatorTxt === "&times;") {
+        if (operatorTxt === "×") {
             operatorTxt = "*";
         }
 

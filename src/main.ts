@@ -1,4 +1,4 @@
-import { Calculator } from "./calculator";
+import { Calculator, DivideByZeroError } from "./calculator";
 
 const lastOperation = document.querySelector(".calculator__last-operation") as HTMLParagraphElement;
 const currentValue = document.querySelector(
@@ -17,13 +17,13 @@ const calculator = new Calculator();
 let shouldClearScreen = false;
 
 function clearCurrentOperation() {
-    currentValue.textContent = "0";
+    currentValue.textContent = "";
     shouldClearScreen = false;
 }
 
 function appendNumberToDisplay(numberText: string) {
     if (currentValue.textContent === "0" || shouldClearScreen) {
-        currentValue.textContent = "";
+        clearCurrentOperation();
     }
 
     if (currentValue.textContent!.length > 13) {
@@ -59,7 +59,13 @@ function allClear() {
 }
 
 function setOperation(operatorTxt: string) {
-    if (calculator.getOperator() !== "") evaluate();
+    if (calculator.getOperator() !== "") {
+        try {
+            evaluate();
+        } catch (error) {
+            return;
+        }
+    }
 
     if (currentValue.textContent === "") {
         currentValue.textContent = "0";
@@ -81,8 +87,10 @@ function evaluate() {
     try {
         currentValue.textContent = `${calculator.calculate()}`;
     } catch (error) {
-        if (error instanceof Error) alert(error.message);
-        return;
+        if (error instanceof DivideByZeroError) {
+            alert(error.message);
+        }
+        throw error;
     }
 
     lastOperation.textContent = `${calculator.getFirstOperand()} ${calculator.getSecondOperand()} ${calculator.getSecondOperand()} =`;
