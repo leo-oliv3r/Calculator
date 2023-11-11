@@ -1,0 +1,53 @@
+@use "./normalizer";
+@use "./variables";
+@use "./head";
+@use "./display";
+@use "./buttons";
+
+:root {
+    font-size: var(--base-font-size);
+    font-family: "Inter", sans-serif;
+    color: #fff;
+    background-color: #fcb31b;
+
+    #app {
+        flex-grow: 1;
+    }
+}
+@supports (font-variation-settings: normal) {
+    :root {
+        font-family: "Inter var", sans-serif;
+    }
+}
+
+/* Layout */
+#app {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    align-items: center;
+    padding-top: var(--spacing-xxs);
+}
+
+#calculator {
+    background-color: #212121;
+    box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.5);
+    padding: var(--spacing-sm);
+    margin: 0 auto;
+    width: 80%;
+    width: clamp(350px, 80%, 450px);
+    border-radius: 1rem;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+
+    a {
+        img {
+            padding-bottom: var(--spacing-xxs);
+            @media (max-width: 1400px) {
+                width: 40px;
+            }
+        }
+    }
+}

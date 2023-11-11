@@ -1,0 +1,31 @@
+.calculator__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .calculator__solar-panel {
+        display: flex;
+        height: 40px;
+        width: 150px;
+        border-radius: 5px;
+        border: 1px solid black;
+        background-color: #522a20;
+        box-shadow: inset 2px 3px 5px 0px rgba(0, 0, 0, 0.7);
+
+        .box {
+            flex-grow: 1;
+        }
+
+        .first ~ .box {
+            border-left: 1px solid black;
+        }
+    }
+
+    .calculator__brand {
+        color: #bbc6ce;
+        text-align: center;
+        font-size: var(--font-size-2);
+        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+        text-shadow: 1px 1px 1px rgba(187, 198, 206, 0.5);
+    }
+}

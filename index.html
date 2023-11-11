@@ -1,127 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css"
-    />
-    <link rel="stylesheet" href="./public/styles.css" />
-    <title>🧮 Calculator</title>
-    <script defer src="./src/app.js"></script>
-  </head>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta charset="UTF-8" />
+        <link rel="preconnect" href="https://rsms.me/" />
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+        <link rel="stylesheet" href="./src/styles/main.scss" />
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 110 100%22><text y=%22.9em%22 font-size=%2290%22>🧮</text></svg>" />
+        <title>Calculator</title>
+    </head>
+    <body>
+        <div id="app">
+            <main>
+                <div id="calculator">
+                    <div class="calculator__head">
+                        <div class="calculator__solar-panel">
+                            <div class="box first"></div>
+                            <div class="box"></div>
+                            <div class="box"></div>
+                            <div class="box"></div>
+                        </div>
+                        <p class="calculator__brand">KK-402 Calculator</p>
+                    </div>
 
-  <body>
-    <main>
-      <section class="container">
-        <div class="calculator">
-          <div class="head">
-            <div class="solar-panel">
-              <div class="box"></div>
-              <div class="box line"></div>
-              <div class="box line"></div>
-              <div class="box line"></div>
-            </div>
-            <div class="brand-text">
-              <p>KK-402 Calculator</p>
-            </div>
-          </div>
+                    <div class="calculator__display">
+                        <p class="calculator__last-operation"></p>
+                        <p class="calculator__current-operation">0</p>
+                    </div>
 
-          <div class="display-container">
-            <output type="text" class="operation-area">0</output>
-          </div>
+                    <div class="calculator__digits">
+                        <button class="clear allclear">AC</button>
+                        <button class="clear clear-one">C</button>
+                        <button class="operators">%</button>
+                        <button class="operators">&divide;</button>
+                        <button class="digits">7</button>
+                        <button class="digits">8</button>
+                        <button class="digits">9</button>
+                        <button class="operators">+</button>
+                        <button class="digits">4</button>
+                        <button class="digits">5</button>
+                        <button class="digits">6</button>
+                        <button class="operators">-</button>
+                        <button class="digits">1</button>
+                        <button class="digits">2</button>
+                        <button class="digits">3</button>
+                        <button class="operators">&times;</button>
+                        <button class="digits">0</button>
+                        <button class="decimal-point">.</button>
+                        <button class="equals">=</button>
+                    </div>
+                </div>
+            </main>
 
-          <div class="buttons-container">
-            <button class="allclear" data-type="reset" id="allclear">AC</button>
-            <button class="clear" data-type="backspace" id="clear">C</button>
-            <button
-              class="operators"
-              data-type="operator"
-              id="remainder"
-              value="%"
-            >
-              %
-            </button>
-            <button
-              class="operators"
-              data-type="operator"
-              id="divide"
-              value="/"
-            >
-              &divide;
-            </button>
-            <button class="digits" data-type="number" id="digit-7" value="7">
-              7
-            </button>
-            <button class="digits" data-type="number" id="digit-8" value="8">
-              8
-            </button>
-            <button class="digits" data-type="number" id="digit-9" value="9">
-              9
-            </button>
-            <button class="operators" data-type="operator" id="plus" value="+">
-              +
-            </button>
-            <button class="digits" data-type="number" id="digit-4" value="4">
-              4
-            </button>
-            <button class="digits" data-type="number" id="digit-5" value="5">
-              5
-            </button>
-            <button class="digits" data-type="number" id="digit-6" value="6">
-              6
-            </button>
-            <button class="operators" data-type="operator" id="minus" value="-">
-              -
-            </button>
-            <button class="digits" data-type="number" id="digit-1" value="1">
-              1
-            </button>
-            <button class="digits" data-type="number" id="digit-2" value="2">
-              2
-            </button>
-            <button class="digits" data-type="number" id="digit-3" value="3">
-              3
-            </button>
-            <button
-              class="operators"
-              data-type="operator"
-              id="multiply"
-              value="x"
-            >
-              x
-            </button>
-            <button class="digits" data-type="number" id="digit-0" value="0">
-              0
-            </button>
-            <button class="decimal" data-type="decimal" id="decimalPoint" value=".">
-              .
-            </button>
-            <button class="equals" data-type="equal" id="equals" value="=">
-              =
-            </button>
-          </div>
+            <footer>
+                <a href="https://github.com/leonardo-vic3nte/Calculator" target="_blank" rel="noopener">
+                    <img src="/icons/github-icon.svg" alt="github icon" />
+                </a>
+            </footer>
         </div>
-      </section>
-      <footer >
-        <a
-          href="https://github.com/leonardo-vic3nte"
-          target="_blank"
-          rel="noopener"
-          class="contrast footer-text"
-        >
-          Leonardo Vicente
-          <img src="./public/assets/github-mark.png" alt="github icon" />
-        </a>
-      </footer>
-    </main>
-  </body>
+        <script type="module" src="/src/main.ts"></script>
+    </body>
 </html>

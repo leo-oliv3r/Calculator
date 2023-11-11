@@ -1,0 +1,50 @@
+.calculator__digits {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: var(--spacing-xs);
+    margin-top: var(--spacing-sm);
+    padding: 0 var(--spacing-xxs);
+
+    button {
+        cursor: pointer;
+        padding: 10px;
+        font-weight: 900;
+        font-size: var(--font-size-1);
+        border: none;
+        box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.5);
+        color: #dfdfdf;
+        background-color: #616161;
+        border-radius: 10px;
+        transition: all 0.15s ease-in-out;
+
+        &:active {
+            transform: translateY(0.2rem);
+        }
+
+        @media (min-width: 1400px) {
+            padding: 14px;
+        }
+    }
+
+    .digits:hover {
+        background-color: #bdbdbd;
+        color: #5e5e5e;
+    }
+
+    .operators:hover,
+    .decimal-point:hover {
+        background-color: #ff8c00;
+    }
+
+    .clear:hover {
+        background-color: #ff5555;
+    }
+
+    .equals {
+        grid-column: 3/ 5;
+
+        &:hover {
+            background-color: #32aa32;
+        }
+    }
+}

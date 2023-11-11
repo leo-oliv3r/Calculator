@@ -1,0 +1,26 @@
+:root {
+    --base-font-size: clamp(1.125rem, 1.5vw, 1.313rem);
+    --font-size-1: calc(var(--base-font-size) + 4px);
+    --font-size-2: calc(var(--font-size-1) + 4px);
+    --font-size-3: calc(var(--font-size-2) + 4px);
+    --font-size-4: calc(var(--font-size-3) + 4px);
+    --font-size-5: calc(var(--font-size-4) + 4px);
+    --font-size-6: calc(var(--font-size-5) + 4px);
+    --font-size-7: calc(var(--font-size-6) + 4px);
+    --font-size-8: calc(var(--font-size-7) + 4px);
+
+
+    --fw-light: 300;
+    --fw-regular: 400;
+    --fw-semi-bold: 600;
+    --fw-bold: 700;
+
+    --spacing-xxs: 0.25em;
+    --spacing-xs: 0.5em;
+    --spacing-sm: 1em;
+    --spacing-md: 1.5em;
+    --spacing-lg: 2em;
+    --spacing-xl: 2.5em;
+    --spacing-xxl: 3em;
+    --spacing-xxxl: 3.5em;
+}
