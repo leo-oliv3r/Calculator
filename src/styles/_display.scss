@@ -4,6 +4,8 @@
 }
 
 .calculator__display {
+    display: flex;
+    flex-direction: column;
     margin: 0 auto;
     margin-top: var(--spacing-md);
     padding: 5px 10px;
@@ -14,7 +16,8 @@
 
     p[class="calculator__last-operation"],
     p[class="calculator__current-operation"] {
-        height: 2ch;
+        flex: 1;
+        min-height: 2ch;
         line-height: 1;
         font-family: DS-DIG;
         font-size: var(--font-size-8);
