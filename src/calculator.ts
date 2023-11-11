@@ -35,6 +35,14 @@ export class Calculator {
     private round = (number: number) => Math.round(number * 1000) / 1000;
 
     getOperator() {
+        if (this.operator === "*") {
+            return "×";
+        }
+
+        if (this.operator === "/") {
+            return "÷";
+        }
+
         return this.operator;
     }
 

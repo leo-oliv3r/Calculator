@@ -93,7 +93,7 @@ function evaluate() {
         throw error;
     }
 
-    lastOperation.textContent = `${calculator.getFirstOperand()} ${calculator.getSecondOperand()} ${calculator.getSecondOperand()} =`;
+    lastOperation.textContent = `${calculator.getFirstOperand()} ${calculator.getOperator()} ${calculator.getSecondOperand()} =`;
     calculator.setOperator("");
 }
 
